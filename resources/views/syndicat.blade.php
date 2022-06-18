@@ -15,7 +15,12 @@
     @endcomponent
 
    
-
+    <?php 
+       Use App\Http\Controllers\HomeController;
+   use App\Models\Syndicat;
+    $im = DB::select('select * from syndicat') ;
+ 
+ ?>
      
 
     <div class="row">
@@ -49,34 +54,39 @@
                 <div class="card-body">
                     <h4 class="card-title mb-4">Ajouter Syndicat</h4>
 
-                    <form>
+                    <form action="{{ url('insert-syndicat') }}" method="post" enctype="multipart/form-data">
+                        @csrf
                         <div class="mb-3">
                             <label for="formrow-firstname-input" class="form-label">Nom</label>
-                            <input type="text" class="form-control" id="formrow-firstname-input">
+                            <input type="text" class="form-control" id="formrow-firstname-input" name='name'>
                         </div>
 
                         <div class="mb-3">
                             <label for="formrow-firstname-input" class="form-label">Adresse</label>
-                            <input type="email" class="form-control" id="formrow-firstname-input">
+                            <input type="email" class="form-control" id="formrow-firstname-input" name='adresse'>
+                        </div>
+                        <div class="mb-3">
+                            <label for="formrow-firstname-input" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="formrow-firstname-input" name='email'>
                         </div>
 
                         <div class="mb-3">
                             <label for="formrow-firstname-input" class="form-label">Téléphone</label>
-                            <input type="phone" class="form-control" id="formrow-firstname-input">
+                            <input type="phone" class="form-control" id="formrow-firstname-input" name='telephone'>
                         </div>
 
                         <div class="row">
 
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label for="formrow-email-input" class="form-label">Cotisation</label>
-                                    <input type="number" class="form-control" id="formrow-email-input">
+                                    <label for="formrow-email-input" class="form-label">CIN</label>
+                                    <input type="number" class="form-control" id="formrow-email-input" name='cin'>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label for="formrow-password-input" class="form-label">Mot de Pass</label>
-                                    <input type="password" class="form-control" id="formrow-password-input">
+                                    <label for="formrow-password-input" class="form-label">Mot de Passe</label>
+                                    <input type="password" class="form-control" id="formrow-password-input"name='password'>
                                 </div>
                             </div>
                         </div>
@@ -85,7 +95,7 @@
                             <div class="col-lg-4">
                                 <div class="mb-3">
                                     <label for="formrow-inputState" class="form-label">Immeuble</label>
-                                    <select id="formrow-inputState" class="form-select">
+                                    <select id="formrow-inputState" class="form-select" name='nomimmeuble'>
                                         <option selected>Choose...</option>
                                         <option>...</option>
                                     </select>
@@ -105,7 +115,7 @@
                             </div>
                         </div>
                         <div>
-                            <button type="submit" class="btn btn-primary w-md">Ajouter</button>
+                            <button type="submit" class="btn btn-primary w-md" >Ajouter</button>
                         </div>
                     </form>
                 </div>
@@ -139,13 +149,22 @@
                                 <th>Adresse</th>
                                 <th>Téléphone</th>
                                 <th>Email</th>
-                                <th>Total Cotisation</th>
+                             
                             </tr>
                         </thead>
 
 
                         <tbody>
+                            @foreach ($im as $item)
                             <tr>
+                                <td>{{$item->name}}</td>
+                                <td>{{$item->email}}</td>
+                                <td>{{$item->telephone}}</td>
+                                <td>{{$item->adresse}}</td>
+                                <td>{{$item->nomImmeuble}}</td>
+                            </tr>
+                            @endforeach
+                           <!-- <tr>
                                 <td>Tiger Nixon</td>
                                 <td>System Architect</td>
                                 <td>Edinburgh</td>
@@ -600,7 +619,7 @@
                                 <td>27</td>
                                 <td>2011/01/25</td>
                                 <td>$112,000</td>
-                            </tr>
+                            </tr>-->
                         </tbody>
                     </table>
                 </div>
