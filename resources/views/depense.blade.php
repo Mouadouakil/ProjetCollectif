@@ -13,9 +13,19 @@
         @slot('li_1') Tables @endslot
         @slot('title')  @endslot
     @endcomponent
+
+    <?php
+    Use App\Http\Controllers\HomeController;
+    use App\Models\Syndicat;
+    $syndicat= Syndicat::all();
+
+    $im = DB::select('select * from depense') ;
+
+
+    ?>
     <div class="card">
                 <div class="card-body">
-                   
+
                     <div>
 
                         <!-- Static Backdrop modal Button -->
@@ -25,7 +35,7 @@
                         </button>
 
 
-                       
+
                         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
                             tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -38,36 +48,37 @@
                                     <div class="modal-body">
                                     <div class="card">
                 <div class="card-body">
-                
 
-                    <form>
-                    <div class="mb-3">
+
+                    <form   action="{{ url('insert-depense') }}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        <div class="mb-3">
                                     <label for="formrow-inputState" class="form-label">Type Depense</label>
-                                    <select id="formrow-inputState" class="form-select">
+                                    <select id="formrow-inputState" class="form-select" name="type_depense">
                                         <option selected>...</option>
                                         <option>Maintenance</option>
                                         <option>Minage</option>
                                         <option>Facteurs</option>
                                         <option>Jardinage</option>
                                     </select>
-                                </div>
-
-                           
                         </div>
+
+
+
 
                         <div class="mb-3">
                             <label for="formrow-firstname-input" class="form-label">Somme</label>
-                            <input type="number" class="form-control" id="formrow-firstname-input">
+                            <input type="number" class="form-control" id="formrow-firstname-input" name="somme">
                         </div>
                         <div class="mb-3">
                             <label for="formrow-firstname-input" class="form-label">Lien Image De Facteur (Drive)</label>
-                            <input type="url" class="form-control" id="formrow-firstname-input">
+                            <input type="url" class="form-control" id="formrow-firstname-input" name="image">
                         </div>
 
 
-                    
 
-                    
+
+
                         <div>
                             <button type="submit" class="btn btn-primary w-md">Ajouter</button>
                         </div>
@@ -76,7 +87,7 @@
                 <!-- end card body -->
             </div>
                                     </div>
-                                   
+
                                 </div>
                             </div>
                         </div>
@@ -88,14 +99,14 @@
             </div>
             <!-- end card -->
         </div>
-   
 
-     
+
+
 
     <div class="row">
         <div class="col-12">
         <div class="col-lg-12">
-            
+
             <div class="card">
                 <div class="card-body">
 
@@ -110,32 +121,41 @@
                                 <th>Somme</th>
                                 <th>Date</th>
                                 <th>Lien Facteur (Image)</th>
-                               
+
                             </tr>
                         </thead>
 
 
                         <tbody>
+                        @foreach ($im as $item)
                             <tr>
-                                <td>Minage</td>
-                                <td>1300 Dh</td>
-                                <td>Jan 31 2022</td>
-                                <td><a href="https://themesbrand.com/skote/layouts/charts-echart.html">Click</a></td>
+                                <td>{{$item->type_depense}}</td>
+                                <td>{{$item->somme}}</td>
+                                <td>{{$item->date}}</td>
+                                <td><a href={{$item->image}}>Click</a></td>
                             </tr>
-                            <tr>
-                                <td>Maintenance</td>
-                                <td>250 Dh</td>
-                                <td>Jan 3 2022</td>
-                                <td><a href="https://themesbrand.com/skote/layouts/charts-echart.html">Click</a></td>
-                            </tr>
-                            <tr>
-                                <td>Facteurs</td>
-                                <td>2500 Dh</td>
-                                <td>Jan 15 2022</td>
-                                <td><a href="https://themesbrand.com/skote/layouts/charts-echart.html">Click</a></td>
-                            </tr>
-                           
-                           
+                        @endforeach
+
+{{--                            <tr>--}}
+{{--                                <td>Minage</td>--}}
+{{--                                <td>1300 Dh</td>--}}
+{{--                                <td>Jan 31 2022</td>--}}
+{{--                                <td><a href="https://themesbrand.com/skote/layouts/charts-echart.html">Click</a></td>--}}
+{{--                            </tr>--}}
+{{--                            <tr>--}}
+{{--                                <td>Maintenance</td>--}}
+{{--                                <td>250 Dh</td>--}}
+{{--                                <td>Jan 3 2022</td>--}}
+{{--                                <td><a href="https://themesbrand.com/skote/layouts/charts-echart.html">Click</a></td>--}}
+{{--                            </tr>--}}
+{{--                            <tr>--}}
+{{--                                <td>Facteurs</td>--}}
+{{--                                <td>2500 Dh</td>--}}
+{{--                                <td>Jan 15 2022</td>--}}
+{{--                                <td><a href="https://themesbrand.com/skote/layouts/charts-echart.html">Click</a></td>--}}
+{{--                            </tr>--}}
+
+
                         </tbody>
                     </table>
                 </div>

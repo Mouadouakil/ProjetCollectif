@@ -14,9 +14,9 @@
         @slot('title')  @endslot
     @endcomponent
 
-   
 
-     
+
+
 
     <div class="row">
         <div class="col-12">
@@ -34,7 +34,7 @@
                         </button>
 
 
-                       
+
                         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
                             tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -111,7 +111,7 @@
                 <!-- end card body -->
             </div>
                                     </div>
-                                   
+
                                 </div>
                             </div>
                         </div>
