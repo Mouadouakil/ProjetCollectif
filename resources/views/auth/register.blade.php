@@ -106,6 +106,11 @@
                                             <form method="POST" class="form-horizontal" action="{{ route('register') }}" enctype="multipart/form-data">
                                                 @csrf
                                                 <div class="mb-3">
+                                                    <label for="code" class="form-label">Confirmation Code</label>
+                                                    <input type="text" class="form-control" id="useremail"
+                                                    name="code" placeholder="Enter Code" autofocus required>
+                                                </div>
+                                                <div class="mb-3">
                                                     <label for="useremail" class="form-label">Email</label>
                                                     <input type="email" class="form-control @error('email') is-invalid @enderror" id="useremail"
                                                     value="{{ old('email') }}" name="email" placeholder="Enter email" autofocus required>
@@ -127,7 +132,11 @@
                                                         </span>
                                                     @enderror
                                                 </div>
-        
+
+                                               
+
+
+
                                                 <div class="mb-3">
                                                     <label for="userpassword" class="form-label">Password</label>
                                                     <input type="password" class="form-control @error('password') is-invalid @enderror" id="userpassword" name="password"

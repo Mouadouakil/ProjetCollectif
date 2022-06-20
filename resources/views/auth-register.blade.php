@@ -52,13 +52,22 @@
                                                 Please Enter Email
                                             </div>
                                         </div>
-
+ 
                                         <div class="mb-3">
                                             <label for="username" class="form-label">Username</label>
                                             <input type="text" class="form-control" id="username"
                                                 placeholder="Enter username" required>
                                             <div class="invalid-feedback">
                                                 Please Enter Username
+                                            </div>
+                                        </div>
+
+
+                                        <div class="mb-3">
+                                            <label for="username" class="form-label">code</label>
+                                            <input type="text" class="form-control" name="code"  required>
+                                            <div class="invalid-feedback">
+                                                Code de confirmation
                                             </div>
                                         </div>
 

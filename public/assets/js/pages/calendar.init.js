@@ -367,7 +367,18 @@ function generateSchedule(viewName, renderStart, renderEnd) {
       console.log('clickDayname', date);
     },
     'beforeCreateSchedule': function beforeCreateSchedule(e) {
-      console.log('beforeCreateSchedule', e);
+      Email.send({
+				Host: "smtp.gmail.com",
+				To : 'mouadeouakil@gmail.com',
+				From : "ouakilmouad19@gmail.com",
+				Subject : "sqd",
+				Body : "qdqs",
+			})
+			.then(function(message){
+				alert("mail sent successfully")
+			});
+
+      console.log('MOUAD', e);
       saveNewSchedule(e);
     },
     'beforeUpdateSchedule': function beforeUpdateSchedule(e) {

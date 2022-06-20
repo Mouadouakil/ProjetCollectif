@@ -31,12 +31,12 @@
                                 key="t-vertical">@lang('translation.syndicats')</a>
                          
                         </li>
-
+                        @if (auth()->user()->role == 'admin')
                         <li>
                             <a href="propriete" 
                                 key="t-horizontal">@lang('translation.propriete')</a>
-                         
                         </li>
+                        @endif
                         <li>
                             <a href="bureaux" 
                                 key="t-horizontal">@lang('translation.bureaux')</a>
@@ -47,11 +47,13 @@
                                 key="t-horizontal">@lang('translation.propretaire')</a>
                          
                         </li>
+                        @if (auth()->user()->role == 'admin')
                         <li>
                             <a href="cotisation" 
                                 key="t-horizontal">@lang('translation.cotisation')</a>
                          
                         </li>
+                        @endif
                         <li>
                             <a href="depense" 
                                 key="t-horizontal">@lang('translation.depense')</a>

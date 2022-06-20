@@ -17,7 +17,9 @@
                     <h4 class="card-title">Caméra Surveillance 1</h4>
                     <p class="card-title-dsec">Bloc A</p>
 
-                    <div id="gmaps-markers" class="gmaps"></div>
+                    <iframe width="600" height="315"
+src="http://119.242.59.190:8083/-wvhttp-01-/GetOneShot?image_size=640x480&frame_count=1000000000">
+</iframe>
                 </div>
             </div>
         </div> <!-- end col -->
@@ -29,7 +31,9 @@
                     <h4 class="card-title">Caméra Surveillance 2</h4>
                     <p class="card-title-desc">Bloc 2</p>
 
-                    <div id="gmaps-overlay" class="gmaps"></div>
+                    <iframe width="600" height="315"
+src="http://180.54.0.8:50000/cgi-bin/camera?resolution=640&amp;quality=1&amp;Language=0&amp;1655660686">
+</iframe>
                 </div>
             </div>
         </div> <!-- end col -->
@@ -43,8 +47,12 @@
 
                     <h4 class="card-title">Caméra Surveillance 3</h4>
                     <p class="card-title-desc">Bloc C</p>
+                    
 
-                    <div id="panorama" class="gmaps-panaroma"></div>
+                        <iframe width="600" height="315"
+src="http://103.125.43.75:60001/cgi-bin/snapshot.cgi?chn=0&u=admin&p=&q=0&1655660869">
+</iframe>
+              
                 </div>
             </div>
         </div> <!-- end col -->
@@ -56,7 +64,9 @@
                     <h4 class="card-title">Caméra Surveillance 4</h4>
                     <p class="card-title-desc">Bloc 4</p>
 
-                    <div id="gmaps-types" class="gmaps"></div>
+                    <iframe width="600" height="315"
+src="http://111.64.36.153:50001/cgi-bin/camera?resolution=640&amp;quality=1&amp;Language=0&amp;1655660769">
+</iframe>
                 </div>
             </div>
         </div> <!-- end col -->
