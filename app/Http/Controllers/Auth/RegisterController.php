@@ -55,6 +55,7 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:6', 'confirmed'],
             'dob' => ['required', 'date', 'before:today'],
+            'code' => ['required' ,'string','in:DEFAULT,KJLM64'],
             'avatar' => ['required', 'image' ,'mimes:jpg,jpeg,png','max:1024'],
         ]);
     }
@@ -67,6 +68,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        // if($data['code']=="MOUAD"){
         if (request()->has('avatar')) {            
             $avatar = request()->file('avatar');
             $avatarName = time() . '.' . $avatar->getClientOriginalExtension();
@@ -81,5 +83,6 @@ class RegisterController extends Controller
             'dob' => date('Y-m-d', strtotime($data['dob'])),
             'avatar' => "/images/" . $avatarName,
         ]);
+    // }
     }
 }

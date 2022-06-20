@@ -333,8 +333,8 @@ function generateSchedule(viewName, renderStart, renderEnd) {
         'clickDayname': function(date) {
             console.log('clickDayname', date);
         },
-        'beforeCreateSchedule': function(e) {
-            console.log('beforeCreateSchedule', e);
+        'ad': function(e) {
+            console.log('ad', e);
             saveNewSchedule(e);
         },
         'beforeUpdateSchedule': function(e) {
@@ -497,13 +497,13 @@ function generateSchedule(viewName, renderStart, renderEnd) {
         var start = datePicker.getStartDate();
         var end = datePicker.getEndDate();
         var calendar = selectedCalendar ? selectedCalendar : CalendarList[0];
-
+        console.log("calneda");
         if (!title) {
             return;
         }
 
         cal.createSchedules([{
-            id: String(chance.guid()),
+            id: 15,
             calendarId: calendar.id,
             title: title,
             isAllDay: isAllDay,
@@ -520,7 +520,7 @@ function generateSchedule(viewName, renderStart, renderEnd) {
             },
             state: 'Busy'
         }]);
-
+       
         $('#modal-new-schedule').modal('hide');
     }
 
@@ -555,33 +555,10 @@ function generateSchedule(viewName, renderStart, renderEnd) {
         }
     }
     function saveNewSchedule(scheduleData) {
-        var calendar = scheduleData.calendar || findCalendar(scheduleData.calendarId);
-        var schedule = {
-            id: String(chance.guid()),
-            title: scheduleData.title,
-            isAllDay: scheduleData.isAllDay,
-            start: scheduleData.start,
-            end: scheduleData.end,
-            category: scheduleData.isAllDay ? 'allday' : 'time',
-            dueDateClass: '',
-            color: calendar.color,
-            bgColor: calendar.bgColor,
-            dragBgColor: calendar.bgColor,
-            borderColor: calendar.borderColor,
-            location: scheduleData.location,
-            raw: {
-                class: scheduleData.raw['class']
-            },
-            state: scheduleData.state
-        };
-        if (calendar) {
-            schedule.calendarId = calendar.id;
-            schedule.color = calendar.color;
-            schedule.bgColor = calendar.bgColor;
-            schedule.borderColor = calendar.borderColor;
-        }
 
-        cal.createSchedules([schedule]);
+        //calendar
+        console.log("saveNewSchedule");
+        console.log(scheduleData);
 
         refreshScheduleVisibility();
     }

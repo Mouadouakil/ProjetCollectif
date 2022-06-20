@@ -242,7 +242,12 @@
             </span>
             <span id="renderRange" class="render-range"></span>
         </div>
+
     </div>-->
+
+        <script> document.get</script>
+    </div>
+
 
 @endsection
 @section('script')
@@ -262,7 +267,7 @@
     <script src="{{ URL::asset('/assets/js/pages/schedules.js') }}"></script>
     <script src="{{ URL::asset('/assets/js/pages/calendar.init.js') }}"></script>
     <script src="{{ URL::asset('/assets/libs/apexcharts/apexcharts.min.js') }}"></script>
-
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
     <!-- dashboard init -->
     <script src="{{ URL::asset('/assets/js/pages/dashboard.init.js') }}"></script>
 @endsection
