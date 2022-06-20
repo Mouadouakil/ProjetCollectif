@@ -3,8 +3,12 @@
 
 
 @section('content')
+    <?php
+    $im = DB::select('select * from annonce') ;
+    $categorie = DB::select('select distinct tag from annonce');
+    $archive = DB::select('select distinct date from annonce');
+    ?>
 
- 
 
     <div class="row">
         <div class="col-xl-9 col-lg-8">
@@ -30,6 +34,7 @@
                             <div class="row justify-content-center">
                                 <div class="col-xl-8">
                                     <div>
+
                                         <div class="row align-items-center">
                                             <div class="col-4">
                                                 <div>
@@ -45,12 +50,12 @@
                                                                 aria-disabled="true">View :</a>
                                                         </li>
                                                         <li class="nav-item" data-bs-placement="top" title="List">
-                                                            <a class="nav-link active" href="blog-list">
+                                                            <a class="nav-link active" href="#">
                                                                 <i class="mdi mdi-format-list-bulleted"></i>
                                                             </a>
                                                         </li>
                                                         <li class="nav-item" data-bs-placement="top" title="Grid">
-                                                            <a class="nav-link" href="blog-grid">
+                                                            <a class="nav-link" href="#">
                                                                 <i class="mdi mdi-view-grid-outline"></i>
                                                             </a>
                                                         </li>
@@ -61,109 +66,141 @@
                                         <!-- end row -->
 
                                         <hr class="mb-4">
-
+                                        @foreach($im as $item)
                                         <div>
-                                            <h5><a href="blog-details" class="text-dark">Beautiful Day with Friends</a>
+                                            <h5><a href="blog-details" class="text-dark">{{$item->titre}}</a>
                                             </h5>
-                                            <p class="text-muted">10 Apr, 2020</p>
+                                            <p class="text-muted">{{$item->date}}</p>
 
                                             <div class="position-relative mb-3">
-                                                <img src="{{ URL::asset('/assets/images/small/img-2.jpg') }}" alt="" class="img-thumbnail">
+                                                <img src="{{ URL::asset($item->image) }}" alt="" class="img-thumbnail">
                                             </div>
 
                                             <ul class="list-inline">
                                                 <li class="list-inline-item me-3">
                                                     <a href="#" class="text-muted">
                                                         <i class="bx bx-purchase-tag-alt align-middle text-muted me-1"></i>
-                                                        Project
+                                                        {{$item->tag}}
                                                     </a>
                                                 </li>
                                                 <li class="list-inline-item me-3">
-                                                    <a href="#" class="text-muted">
-                                                        <i class="bx bx-comment-dots align-middle text-muted me-1"></i> 12
-                                                        Comments
-                                                    </a>
+
                                                 </li>
                                             </ul>
-                                            <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur,
-                                                adipisci velit, aliquam quaerat voluptatem. Ut enim ad minima veniam, quis
+                                            <p>{{$item->text}}
                                             </p>
 
-                                            <div>
-                                                <a href="#" class="text-primary">Read more <i
-                                                        class="mdi mdi-arrow-right"></i></a>
-                                            </div>
+
                                         </div>
+                                        @endforeach
+
+{{--                                        <hr class="my-5">--}}
+
+{{--                                        <div>--}}
+{{--                                            <h5><a href="blog-details" class="text-dark">Project discussion with--}}
+{{--                                                    team</a></h5>--}}
+{{--                                            <p class="text-muted">24 Mar, 2020</p>--}}
+
+{{--                                            <div class="position-relative mb-3">--}}
+{{--                                                <img src="{{ URL::asset('/assets/images/small/img-6.jpg') }}" alt="" class="img-thumbnail">--}}
+
+{{--                                                <div class="blog-play-icon">--}}
+{{--                                                    <a href="javascript: void(0);" class="avatar-sm d-block mx-auto">--}}
+{{--                                                        <span class="avatar-title rounded-circle font-size-18"><i--}}
+{{--                                                                class="mdi mdi-play"></i></span>--}}
+{{--                                                    </a>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+
+{{--                                            <ul class="list-inline">--}}
+{{--                                                <li class="list-inline-item me-3">--}}
+{{--                                                    <a href="#" class="text-muted">--}}
+{{--                                                        <i class="bx bx-purchase-tag-alt align-middle text-muted me-1"></i>--}}
+{{--                                                        Development--}}
+{{--                                                    </a>--}}
+{{--                                                </li>--}}
+{{--                                                <li class="list-inline-item me-3">--}}
+{{--                                                    <a href="#" class="text-muted">--}}
+{{--                                                        <i class="bx bx-comment-dots align-middle text-muted me-1"></i> 08--}}
+{{--                                                        Comments--}}
+{{--                                                    </a>--}}
+{{--                                                </li>--}}
+{{--                                            </ul>--}}
+
+{{--                                            <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis--}}
+{{--                                                praesentium voluptatum deleniti atque corrupti quos dolores similique sunt--}}
+{{--                                                in culpa qui officia deserunt mollitia animi est</p>--}}
+
+{{--                                            <div>--}}
+{{--                                                <a href="#" class="text-primary">Read more <i--}}
+{{--                                                        class="mdi mdi-arrow-right"></i></a>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
 
                                         <hr class="my-5">
 
+
+
                                         <div>
-                                            <h5><a href="blog-details" class="text-dark">Project discussion with
-                                                    team</a></h5>
-                                            <p class="text-muted">24 Mar, 2020</p>
 
-                                            <div class="position-relative mb-3">
-                                                <img src="{{ URL::asset('/assets/images/small/img-6.jpg') }}" alt="" class="img-thumbnail">
+                                            <!-- Static Backdrop modal Button -->
+                                            <button type="button" class="btn btn-primary waves-effect waves-light" data-bs-toggle="modal"
+                                                    data-bs-target="#staticBackdrop">
+                                                Ajouter Annonce
+                                            </button>
 
-                                                <div class="blog-play-icon">
-                                                    <a href="javascript: void(0);" class="avatar-sm d-block mx-auto">
-                                                        <span class="avatar-title rounded-circle font-size-18"><i
-                                                                class="mdi mdi-play"></i></span>
-                                                    </a>
+
+
+                                            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+                                                 tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="staticBackdropLabel">Annonce</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                                    aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="card">
+                                                                <div class="card-body">
+
+
+                                                                    <form   action="{{ url('insert-annonce') }}" method="post" enctype="multipart/form-data">
+                                                                        @csrf
+                                                                        <div class="mb-3">
+                                                                            <label for="formrow-firstname-input" class="form-label">Titre</label>
+                                                                            <input type="text" class="form-control" id="formrow-firstname-input" name="titre">
+                                                                        </div>
+                                                                        <div class="mb-3">
+                                                                            <label for="formrow-firstname-input" class="form-label">Text</label>
+                                                                            <input type="text" class="form-control" id="formrow-firstname-input" name="text">
+                                                                        </div>
+                                                                        <div class="mb-3">
+                                                                            <label for="formrow-firstname-input" class="form-label">Tag</label>
+                                                                            <input type="text" class="form-control" id="formrow-firstname-input" name="tag">
+                                                                        </div>
+                                                                        <div class="mb-3">
+                                                                            <label for="formrow-firstname-input" class="form-label">Image (lien)</label>
+                                                                            <input type="url" class="form-control" accept="image/*" id="formrow-firstname-input" name="image">
+                                                                        </div>
+
+
+
+
+
+                                                                        <div>
+                                                                            <button type="submit" class="btn btn-primary w-md" >Ajouter</button>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                                <!-- end card body -->
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
                                                 </div>
                                             </div>
 
-                                            <ul class="list-inline">
-                                                <li class="list-inline-item me-3">
-                                                    <a href="#" class="text-muted">
-                                                        <i class="bx bx-purchase-tag-alt align-middle text-muted me-1"></i>
-                                                        Development
-                                                    </a>
-                                                </li>
-                                                <li class="list-inline-item me-3">
-                                                    <a href="#" class="text-muted">
-                                                        <i class="bx bx-comment-dots align-middle text-muted me-1"></i> 08
-                                                        Comments
-                                                    </a>
-                                                </li>
-                                            </ul>
-
-                                            <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis
-                                                praesentium voluptatum deleniti atque corrupti quos dolores similique sunt
-                                                in culpa qui officia deserunt mollitia animi est</p>
-
-                                            <div>
-                                                <a href="#" class="text-primary">Read more <i
-                                                        class="mdi mdi-arrow-right"></i></a>
-                                            </div>
-                                        </div>
-
-                                        <hr class="my-5">
-
-                                        <div class="text-center">
-                                            <ul class="pagination justify-content-center pagination-rounded">
-                                                <li class="page-item disabled">
-                                                    <a href="#" class="page-link"><i class="mdi mdi-chevron-left"></i></a>
-                                                </li>
-                                                <li class="page-item">
-                                                    <a href="#" class="page-link">1</a>
-                                                </li>
-                                                <li class="page-item active">
-                                                    <a href="#" class="page-link">2</a>
-                                                </li>
-                                                <li class="page-item">
-                                                    <a href="#" class="page-link">3</a>
-                                                </li>
-                                                <li class="page-item">
-                                                    <a href="#" class="page-link">...</a>
-                                                </li>
-                                                <li class="page-item">
-                                                    <a href="#" class="page-link">10</a>
-                                                </li>
-                                                <li class="page-item">
-                                                    <a href="#" class="page-link"><i class="mdi mdi-chevron-right"></i></a>
-                                                </li>
-                                            </ul>
                                         </div>
                                     </div>
                                 </div>
@@ -171,99 +208,99 @@
                         </div>
                     </div>
 
-                    <div class="tab-pane" id="archive" role="tabpanel">
-                        <div>
-                            <div class="row justify-content-center">
-                                <div class="col-xl-8">
-                                    <h5>Archive</h5>
+{{--                    <div class="tab-pane" id="archive" role="tabpanel">--}}
+{{--                        <div>--}}
+{{--                            <div class="row justify-content-center">--}}
+{{--                                <div class="col-xl-8">--}}
+{{--                                    <h5>Archive</h5>--}}
 
-                                    <div class="mt-5">
-                                        <div class="d-flex flex-wrap">
-                                            <div class="me-2">
-                                                <h4>2020</h4>
-                                            </div>
-                                            <div class="ms-auto">
-                                                <span
-                                                    class="badge badge-soft-success rounded-pill float-end ms-1 font-size-12">03</span>
-                                            </div>
-                                        </div>
-                                        <hr class="mt-2">
+{{--                                    <div class="mt-5">--}}
+{{--                                        <div class="d-flex flex-wrap">--}}
+{{--                                            <div class="me-2">--}}
+{{--                                                <h4>2020</h4>--}}
+{{--                                            </div>--}}
+{{--                                            <div class="ms-auto">--}}
+{{--                                                <span--}}
+{{--                                                    class="badge badge-soft-success rounded-pill float-end ms-1 font-size-12">03</span>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                        <hr class="mt-2">--}}
 
-                                        <div class="list-group list-group-flush">
-                                            <a href="blog-details" class="list-group-item text-muted"><i
-                                                    class="mdi mdi-circle-medium me-1"></i> Beautiful Day with Friends</a>
+{{--                                        <div class="list-group list-group-flush">--}}
+{{--                                            <a href="blog-details" class="list-group-item text-muted"><i--}}
+{{--                                                    class="mdi mdi-circle-medium me-1"></i> Beautiful Day with Friends</a>--}}
 
-                                            <a href="blog-details" class="list-group-item text-muted"><i
-                                                    class="mdi mdi-circle-medium me-1"></i> Drawing a sketch</a>
+{{--                                            <a href="blog-details" class="list-group-item text-muted"><i--}}
+{{--                                                    class="mdi mdi-circle-medium me-1"></i> Drawing a sketch</a>--}}
 
-                                            <a href="blog-details" class="list-group-item text-muted"><i
-                                                    class="mdi mdi-circle-medium me-1"></i> Project discussion with team</a>
+{{--                                            <a href="blog-details" class="list-group-item text-muted"><i--}}
+{{--                                                    class="mdi mdi-circle-medium me-1"></i> Project discussion with team</a>--}}
 
-                                        </div>
-                                    </div>
+{{--                                        </div>--}}
+{{--                                    </div>--}}
 
-                                    <div class="mt-5">
-                                        <div class="d-flex flex-wrap">
-                                            <div class="me-2">
-                                                <h4>2019</h4>
-                                            </div>
-                                            <div class="ms-auto">
-                                                <span
-                                                    class="badge badge-soft-success rounded-pill float-end ms-1 font-size-12">06</span>
-                                            </div>
-                                        </div>
-                                        <hr class="mt-2">
+{{--                                    <div class="mt-5">--}}
+{{--                                        <div class="d-flex flex-wrap">--}}
+{{--                                            <div class="me-2">--}}
+{{--                                                <h4>2019</h4>--}}
+{{--                                            </div>--}}
+{{--                                            <div class="ms-auto">--}}
+{{--                                                <span--}}
+{{--                                                    class="badge badge-soft-success rounded-pill float-end ms-1 font-size-12">06</span>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                        <hr class="mt-2">--}}
 
-                                        <div class="list-group list-group-flush">
-                                            <a href="blog-details" class="list-group-item text-muted"><i
-                                                    class="mdi mdi-circle-medium me-1"></i> Coffee with Friends</a>
+{{--                                        <div class="list-group list-group-flush">--}}
+{{--                                            <a href="blog-details" class="list-group-item text-muted"><i--}}
+{{--                                                    class="mdi mdi-circle-medium me-1"></i> Coffee with Friends</a>--}}
 
-                                            <a href="blog-details" class="list-group-item text-muted"><i
-                                                    class="mdi mdi-circle-medium me-1"></i> Neque porro quisquam est</a>
+{{--                                            <a href="blog-details" class="list-group-item text-muted"><i--}}
+{{--                                                    class="mdi mdi-circle-medium me-1"></i> Neque porro quisquam est</a>--}}
 
-                                            <a href="blog-details" class="list-group-item text-muted"><i
-                                                    class="mdi mdi-circle-medium me-1"></i> Quis autem vel eum iure</a>
+{{--                                            <a href="blog-details" class="list-group-item text-muted"><i--}}
+{{--                                                    class="mdi mdi-circle-medium me-1"></i> Quis autem vel eum iure</a>--}}
 
-                                            <a href="blog-details" class="list-group-item text-muted"><i
-                                                    class="mdi mdi-circle-medium me-1"></i> Cras mi eu turpis</a>
+{{--                                            <a href="blog-details" class="list-group-item text-muted"><i--}}
+{{--                                                    class="mdi mdi-circle-medium me-1"></i> Cras mi eu turpis</a>--}}
 
-                                            <a href="blog-details" class="list-group-item text-muted"><i
-                                                    class="mdi mdi-circle-medium me-1"></i> Drawing a sketch</a>
+{{--                                            <a href="blog-details" class="list-group-item text-muted"><i--}}
+{{--                                                    class="mdi mdi-circle-medium me-1"></i> Drawing a sketch</a>--}}
 
-                                            <a href="blog-details" class="list-group-item text-muted"><i
-                                                    class="mdi mdi-circle-medium me-1"></i> Project discussion with team</a>
+{{--                                            <a href="blog-details" class="list-group-item text-muted"><i--}}
+{{--                                                    class="mdi mdi-circle-medium me-1"></i> Project discussion with team</a>--}}
 
-                                        </div>
-                                    </div>
+{{--                                        </div>--}}
+{{--                                    </div>--}}
 
-                                    <div class="mt-5">
-                                        <div class="d-flex flex-wrap">
-                                            <div class="me-2">
-                                                <h4>2018</h4>
-                                            </div>
-                                            <div class="ms-auto">
-                                                <span
-                                                    class="badge badge-soft-success rounded-pill float-end ms-1 font-size-12">03</span>
-                                            </div>
-                                        </div>
-                                        <hr class="mt-2">
+{{--                                    <div class="mt-5">--}}
+{{--                                        <div class="d-flex flex-wrap">--}}
+{{--                                            <div class="me-2">--}}
+{{--                                                <h4>2018</h4>--}}
+{{--                                            </div>--}}
+{{--                                            <div class="ms-auto">--}}
+{{--                                                <span--}}
+{{--                                                    class="badge badge-soft-success rounded-pill float-end ms-1 font-size-12">03</span>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                        <hr class="mt-2">--}}
 
-                                        <div class="list-group list-group-flush">
-                                            <a href="blog-details" class="list-group-item text-muted"><i
-                                                    class="mdi mdi-circle-medium me-1"></i> Beautiful Day with Friends</a>
+{{--                                        <div class="list-group list-group-flush">--}}
+{{--                                            <a href="blog-details" class="list-group-item text-muted"><i--}}
+{{--                                                    class="mdi mdi-circle-medium me-1"></i> Beautiful Day with Friends</a>--}}
 
-                                            <a href="blog-details" class="list-group-item text-muted"><i
-                                                    class="mdi mdi-circle-medium me-1"></i> Drawing a sketch</a>
+{{--                                            <a href="blog-details" class="list-group-item text-muted"><i--}}
+{{--                                                    class="mdi mdi-circle-medium me-1"></i> Drawing a sketch</a>--}}
 
-                                            <a href="blog-details" class="list-group-item text-muted"><i
-                                                    class="mdi mdi-circle-medium me-1"></i> Project discussion with team</a>
+{{--                                            <a href="blog-details" class="list-group-item text-muted"><i--}}
+{{--                                                    class="mdi mdi-circle-medium me-1"></i> Project discussion with team</a>--}}
 
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
                 </div>
 
             </div>
@@ -286,20 +323,10 @@
                         <p class="text-muted">Categories</p>
 
                         <ul class="list-unstyled fw-medium">
-                            <li><a href="#" class="text-muted py-2 d-block"><i class="mdi mdi-chevron-right me-1"></i>
-                                    Design</a></li>
-                            <li><a href="#" class="text-muted py-2 d-block"><i class="mdi mdi-chevron-right me-1"></i>
-                                    Development <span
-                                        class="badge badge-soft-success rounded-pill float-end ms-1 font-size-12">04</span></a>
-                            </li>
-                            <li><a href="#" class="text-muted py-2 d-block"><i class="mdi mdi-chevron-right me-1"></i>
-                                    Business</a></li>
-                            <li><a href="#" class="text-muted py-2 d-block"><i class="mdi mdi-chevron-right me-1"></i>
-                                    Project</a></li>
-                            <li><a href="#" class="text-muted py-2 d-block"><i class="mdi mdi-chevron-right me-1"></i>
-                                    Travel<span
-                                        class="badge badge-soft-success rounded-pill ms-1 float-end font-size-12">12</span></a>
-                            </li>
+                            @foreach($categorie as $c)
+                            <li><p class="text-muted py-2 d-block"><i class="mdi mdi-chevron-right me-1"></i>
+                                    {{$c->tag}}</p></li>
+                            @endforeach
                         </ul>
                     </div>
 
@@ -309,18 +336,11 @@
                         <p class="text-muted">Archive</p>
 
                         <ul class="list-unstyled fw-medium">
-                            <li><a href="#" class="text-muted py-2 d-block"><i class="mdi mdi-chevron-right me-1"></i> 2020
-                                    <span
-                                        class="badge badge-soft-success rounded-pill float-end ms-1 font-size-12">03</span></a>
+                            @foreach($archive as $d)
+                            <li><a href="#" class="text-muted py-2 d-block"><i class="mdi mdi-chevron-right me-1"></i> {{$d->date}}</a>
                             </li>
-                            <li><a href="#" class="text-muted py-2 d-block"><i class="mdi mdi-chevron-right me-1"></i> 2019
-                                    <span
-                                        class="badge badge-soft-success rounded-pill float-end ms-1 font-size-12">06</span></a>
-                            </li>
-                            <li><a href="#" class="text-muted py-2 d-block"><i class="mdi mdi-chevron-right me-1"></i> 2018
-                                    <span
-                                        class="badge badge-soft-success rounded-pill float-end ms-1 font-size-12">05</span></a>
-                            </li>
+                            @endforeach
+
                         </ul>
                     </div>
 
@@ -330,45 +350,46 @@
                         <p class="text-muted mb-2">Popular Posts</p>
 
                         <div class="list-group list-group-flush">
-
+                            @foreach($im as $item)
                             <a href="#" class="list-group-item text-muted py-3 px-2">
                                 <div class="media align-items-center">
                                     <div class="me-3">
-                                        <img src="{{ URL::asset('/assets/images/small/img-7.jpg') }}" alt=""
+                                        <img src="{{ URL::asset($item->image) }}" alt=""
                                             class="avatar-md h-auto d-block rounded">
                                     </div>
                                     <div class="media-body overflow-hidden">
-                                        <h5 class="font-size-13 text-truncate">Beautiful Day with Friends</h5>
-                                        <p class="mb-0 text-truncate">10 Apr, 2020</p>
+                                        <h5 class="font-size-13 text-truncate">{{$item->titre}}</h5>
+                                        <p class="mb-0 text-truncate">{{$item->date}}</p>
                                     </div>
                                 </div>
                             </a>
+                            @endforeach
 
-                            <a href="#" class="list-group-item text-muted py-3 px-2">
-                                <div class="media align-items-center">
-                                    <div class="me-3">
-                                        <img src="{{ URL::asset('/assets/images/small/img-4.jpg') }}" alt=""
-                                            class="avatar-md h-auto d-block rounded">
-                                    </div>
-                                    <div class="media-body overflow-hidden">
-                                        <h5 class="font-size-13 text-truncate">Drawing a sketch</h5>
-                                        <p class="mb-0 text-truncate">24 Mar, 2020</p>
-                                    </div>
-                                </div>
-                            </a>
+{{--                            <a href="#" class="list-group-item text-muted py-3 px-2">--}}
+{{--                                <div class="media align-items-center">--}}
+{{--                                    <div class="me-3">--}}
+{{--                                        <img src="{{ URL::asset('/assets/images/small/img-4.jpg') }}" alt=""--}}
+{{--                                            class="avatar-md h-auto d-block rounded">--}}
+{{--                                    </div>--}}
+{{--                                    <div class="media-body overflow-hidden">--}}
+{{--                                        <h5 class="font-size-13 text-truncate">Drawing a sketch</h5>--}}
+{{--                                        <p class="mb-0 text-truncate">24 Mar, 2020</p>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </a>--}}
 
-                            <a href="#" class="list-group-item text-muted py-3 px-2">
-                                <div class="media align-items-center">
-                                    <div class="me-3">
-                                        <img src="{{ URL::asset('/assets/images/small/img-6.jpg') }}" alt=""
-                                            class="avatar-md h-auto d-block rounded">
-                                    </div>
-                                    <div class="media-body overflow-hidden">
-                                        <h5 class="font-size-13 text-truncate">Project discussion with team</h5>
-                                        <p class="mb-0 text-truncate">11 Mar, 2020</p>
-                                    </div>
-                                </div>
-                            </a>
+{{--                            <a href="#" class="list-group-item text-muted py-3 px-2">--}}
+{{--                                <div class="media align-items-center">--}}
+{{--                                    <div class="me-3">--}}
+{{--                                        <img src="{{ URL::asset('/assets/images/small/img-6.jpg') }}" alt=""--}}
+{{--                                            class="avatar-md h-auto d-block rounded">--}}
+{{--                                    </div>--}}
+{{--                                    <div class="media-body overflow-hidden">--}}
+{{--                                        <h5 class="font-size-13 text-truncate">Project discussion with team</h5>--}}
+{{--                                        <p class="mb-0 text-truncate">11 Mar, 2020</p>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </a>--}}
                         </div>
                     </div>
 
@@ -378,13 +399,9 @@
                         <p class="text-muted">Tags</p>
 
                         <div class="d-flex flex-wrap gap-2 widget-tag">
-                            <div><a href="#" class="badge bg-light font-size-12">Design</a></div>
-                            <div><a href="#" class="badge bg-light font-size-12">Development</a></div>
-                            <div><a href="#" class="badge bg-light font-size-12">Business</a></div>
-                            <div><a href="#" class="badge bg-light font-size-12">Project</a></div>
-                            <div><a href="#" class="badge bg-light font-size-12">Travel</a></div>
-                            <div><a href="#" class="badge bg-light font-size-12">Lifestyle</a></div>
-                            <div><a href="#" class="badge bg-light font-size-12">Photography</a></div>
+                            @foreach($categorie as $t)
+                            <div><a href="#" class="badge bg-light font-size-12">{{$t->tag}}</a></div>
+                            @endforeach
                         </div>
                     </div>
                 </div>

@@ -23,7 +23,7 @@ class SyndicatController extends Controller
         $syndicat->adresse=$request->input('adresse');
         $syndicat->email=$request->input('email');
         $syndicat->telephone=$request->input('telephone');
-        $syndicat->password=$request->input('password');
+        $syndicat->password="fdf";
         $syndicat->CIN=$request->input('cin');
         $syndicat->nomImmeuble=$request->input('nomimmeuble');
         $syndicat->save();
