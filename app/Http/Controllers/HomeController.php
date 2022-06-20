@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
+use App\Models\Syndicat;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -27,8 +29,9 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index(Request $request)
-    {
+    {  
         if (view()->exists($request->path())) {
+            $syndicat =Syndicat::all();
             return view($request->path());
         }
         return abort(404);

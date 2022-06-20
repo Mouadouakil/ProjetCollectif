@@ -14,7 +14,15 @@
         @slot('title')  @endslot
     @endcomponent
 
+    <?php 
+    Use App\Http\Controllers\HomeController;
+    use App\Models\Syndicat;
+    $syndicat= Syndicat::all();
    
+     $im = DB::select('select * from proprietaire') ;
+  
+ 
+    ?>
 
      
 
@@ -49,39 +57,37 @@
                 <div class="card-body">
                     <h4 class="card-title mb-4">Ajouter Habitant</h4>
 
-                    <form>
+                    <form  action="{{ url('insert-proprietaire') }}" method="post" enctype="multipart/form-data">
+                        @csrf
+                       
                         <div class="mb-3">
                             <label for="formrow-firstname-input" class="form-label">Nom</label>
-                            <input type="text" class="form-control" id="formrow-firstname-input">
+                            <input type="text" class="form-control" id="formrow-firstname-input" name="name">
                         </div>
 
                         <div class="mb-3">
                             <label for="formrow-firstname-input" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="formrow-firstname-input">
+                            <input type="email" class="form-control" id="formrow-firstname-input" name="email">
                         </div>
 
                         <div class="mb-3">
                             <label for="formrow-firstname-input" class="form-label">Mobile</label>
-                            <input type="phone" class="form-control" id="formrow-firstname-input">
+                            <input type="phone" class="form-control" id="formrow-firstname-input" name="telephone">
                         </div>
 
-                        <div class="row">
-
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label for="formrow-email-input" class="form-label">Cotisation Mensuel</label>
-                                    <input type="number" class="form-control" id="formrow-email-input">
-                                </div>
-                            </div>
-                           
-                        </div>
+                       
 
                         <div class="row">
+                            <label for="formrow-inputState" class="form-label">Nom Immeuble</label>
+                            <select id="formrow-inputState" class="form-select" name="nomimmeuble">
+                                <option selected>Choose...</option>
+                                <option>...</option>
+                            </select>
                         <div class="mb-3">
                                     <label for="formrow-inputState" class="form-label">Numéro Appartement</label>
-                                    <select id="formrow-inputState" class="form-select">
+                                    <select id="formrow-inputState" class="form-select" name="numappartement">
                                         <option selected>Choose...</option>
-                                        <option>...</option>
+                                        <option>1</option>
                                     </select>
                                 </div>
 
@@ -128,17 +134,26 @@
                         <thead>
                             <tr>
                                 <th>Nom</th>
-                                <th>Mobile</th>
+                                <th>Email</th>
                                 <th>Téléphone</th>
-                                <th>Cotisation Mensuel</th>
-                                <th>Total Annuel</th>
-                                <th>Appartement</th>
+                                <th>Numero Appartement</th>
+                                <th>Nom Immeuble</th>
+                                
                             </tr>
                         </thead>
 
 
                         <tbody>
+                            @foreach ($im as $item)
                             <tr>
+                                <td>{{$item->name}}</td>
+                                <td>{{$item->email}}</td>
+                                <td>{{$item->telephone}}</td>
+                                <td>{{$item->numeroAppartement}}</td>
+                                <td>{{$item->nomImmeuble}}</td>
+                            </tr>
+                            @endforeach
+                         <!--   <tr>
                                 <td>Tiger Nixon</td>
                                 <td>System Architect</td>
                                 <td>Edinburgh</td>
@@ -593,7 +608,7 @@
                                 <td>27</td>
                                 <td>2011/01/25</td>
                                 <td>$112,000</td>
-                            </tr>
+                            </tr>-->
                         </tbody>
                     </table>
                 </div>

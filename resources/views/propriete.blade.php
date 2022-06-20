@@ -14,8 +14,15 @@
         @slot('title')  @endslot
     @endcomponent
 
-   
+   <?php 
+   Use App\Http\Controllers\HomeController;
+   use App\Models\Syndicat;
+   $syndicat= Syndicat::all();
+  
+    $im = DB::select('select * from immeuble') ;
+ 
 
+   ?>
      
 
     <div class="row">
@@ -151,34 +158,32 @@
                                         <div class="card-body">
                         
 
-                                    <form>
+                                    <form action="{{ url('insert-immeuble') }}" method="post" enctype="multipart/form-data">
+                                        @csrf
                                     <div class="mb-3">
                                     <label for="formrow-firstname-input" class="form-label">Nom</label>
-                                    <input type="text" class="form-control" id="formrow-firstname-input">
+                                    <input type="text" class="form-control" id="formrow-firstname-input" name="nom">
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="formrow-firstname-input" class="form-label">Nombre Appartements</label>
-                                    <input type="number" class="form-control" id="formrow-firstname-input">
+                                    <input type="number" class="form-control" id="formrow-firstname-input" name="nbrapp">
                                 </div>
 
-                                <div class="mb-3">
-                                    <label for="formrow-firstname-input" class="form-label">Mobile</label>
-                                    <input type="phone" class="form-control" id="formrow-firstname-input">
-                                </div>
+                               
 
                                 <div class="row">
 
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label for="formrow-email-input" class="form-label">Etages</label>
-                                            <input type="number" class="form-control" id="formrow-email-input">
+                                            <input type="number" class="form-control" id="formrow-email-input" name="etage">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label for="formrow-email-input" class="form-label">Adresse</label>
-                                            <input type="text" class="form-control" id="formrow-email-input">
+                                            <input type="text" class="form-control" id="formrow-email-input" name="adresse">
                                         </div>
                                     </div>
                                 
@@ -190,8 +195,11 @@
                                     <div class="col-lg-4">
                                         <div class="mb-3">
                                             <label for="formrow-inputState" class="form-label">Nom Syndicat</label>
-                                            <select id="formrow-inputState" class="form-select">
+                                            <select id="formrow-inputState" class="form-select" name="nomsyndicat">
                                                 <option selected>Choose...</option>
+                                                @foreach ($syndicat as $item)
+                                                <option selected value="{{$item->id}}">{{$item->name}}</option>
+                                                @endforeach
                                                 <option>...</option>
                                             </select>
                                         </div>
@@ -725,16 +733,24 @@
                             <tr>
                                 <th>Nom</th>
                                 <th>Nombre Appartements</th>
-                                <th>Nombre Appartements</th>
-                                <th>Nom Syndicat</th>
-                                <th>Etages</th>
-                                <th>Adresse</th>
+                                <th>Nombre Etages</th>
+                          <th>Adresse</th>
+                          <th>Nom Syndicat</th>
                             </tr>
                         </thead>
 
 
                         <tbody>
+                            @foreach ($im as $item)
                             <tr>
+                                <td>{{$item->name}}</td>
+                                <td>{{$item->nbrappartement}}</td>
+                                <td>{{$item->etage}}</td>
+                                <td>{{$item->adresse}}</td>
+                                <td>{{$item->nomSyndicat}}</td>
+                            </tr>
+                            @endforeach
+                          <!--  <tr>
                                 <td>Tiger Nixon</td>
                                 <td>System Architect</td>
                                 <td>Edinburgh</td>
@@ -832,7 +848,7 @@
                             </tr>
            
                           
-                         
+                        -->
                         </tbody>
                     </table>
                 </div>
