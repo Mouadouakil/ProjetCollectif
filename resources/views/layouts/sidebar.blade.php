@@ -15,8 +15,9 @@
                         <span key="t-dashboards">@lang('translation.Dashboards')</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="index" key="t-default">@lang('translation.Default')</a></li>
-                        <li><a href="dashboardsyndicat" key="t-default">@lang('translation.dashboardsyndicat')</a></li>
+                    @if (auth()->user()->role == 'admin')
+                        <li><a href="index" key="t-default">@lang('translation.Default')</a></li>@endif
+                        @if (auth()->user()->role == 'syndicat') <li><a href="dashboardsyndicat" key="t-default">@lang('translation.dashboardsyndicat')</a></li>@endif
                     </ul>
                 </li>
                 
@@ -26,45 +27,47 @@
                         <span key="t-layouts">@lang('translation.gestion')</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="true">
-                        <li>
+                    @if (auth()->user()->role == 'admin')    
+                    <li>
                             <a href="syndicat" 
                                 key="t-vertical">@lang('translation.syndicats')</a>
                          
-                        </li>
-                        @if (auth()->user()->role == 'admin')
+                        </li>@endif
+                        @if (auth()->user()->role == 'admin')     
                         <li>
                             <a href="propriete" 
                                 key="t-horizontal">@lang('translation.propriete')</a>
                         </li>
                         @endif
+                        @if (auth()->user()->role == 'admin')
                         <li>
                             <a href="bureaux" 
                                 key="t-horizontal">@lang('translation.bureaux')</a>
                          
-                        </li>
+                        </li>  @endif
+                      
                         <li>
                             <a href="propretaire" 
                                 key="t-horizontal">@lang('translation.propretaire')</a>
                          
                         </li>
-                        @if (auth()->user()->role == 'admin')
+                        @if (auth()->user()->role == 'syndicat')  
                         <li>
                             <a href="cotisation" 
                                 key="t-horizontal">@lang('translation.cotisation')</a>
                          
-                        </li>
-                        @endif
+                        </li> @endif
+                        @if (auth()->user()->role == 'syndicat')  
                         <li>
                             <a href="depense" 
                                 key="t-horizontal">@lang('translation.depense')</a>
                          
-                        </li>
+                        </li>@endif
 
                         
                     </ul>
                 </li>
 
-                <!-- <li class="menu-title" key="t-apps">@lang('translation.Apps')</li> -->
 
                 <li>
                     <a href="surveillance" class="waves-effect">
