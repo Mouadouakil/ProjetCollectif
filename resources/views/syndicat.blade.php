@@ -19,6 +19,7 @@
        Use App\Http\Controllers\HomeController;
    use App\Models\Syndicat;
     $im = DB::select('select * from syndicat') ;
+    $is = DB::select('select * from immeuble') ;
  
  ?>
      
@@ -63,7 +64,7 @@
 
                         <div class="mb-3">
                             <label for="formrow-firstname-input" class="form-label">Adresse</label>
-                            <input type="email" class="form-control" id="formrow-firstname-input" name='adresse'>
+                            <input type="text" class="form-control" id="formrow-firstname-input" name='adresse'>
                         </div>
                         <div class="mb-3">
                             <label for="formrow-firstname-input" class="form-label">Email</label>
@@ -83,12 +84,7 @@
                                     <input type="number" class="form-control" id="formrow-email-input" name='cin'>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label for="formrow-password-input" class="form-label">Mot de Passe</label>
-                                    <input type="password" class="form-control" id="formrow-password-input"name='password'>
-                                </div>
-                            </div>
+                           
                         </div>
 
                         <div class="row">
@@ -97,6 +93,10 @@
                                     <label for="formrow-inputState" class="form-label">Immeuble</label>
                                     <select id="formrow-inputState" class="form-select" name='nomimmeuble'>
                                         <option selected>Choose...</option>
+                                        @foreach ($is as $item)
+                                                <option selected value="{{$item->name}}">{{$item->name}}</option>
+                                                @endforeach
+                                                <option>...</option>
                                         <option>...</option>
                                     </select>
                                 </div>
@@ -145,10 +145,13 @@
                         <thead>
                             <tr>
                                 <th>Nom</th>
-                                <th>Immeuble</th>
-                                <th>Adresse</th>
-                                <th>Téléphone</th>
                                 <th>Email</th>
+                                <th>Téléphone</th>
+                                <th>Adresse</th>
+                                <th>Immeuble</th>
+                              
+                                
+                                
                              
                             </tr>
                         </thead>
