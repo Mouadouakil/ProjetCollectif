@@ -95,6 +95,7 @@
                             </div>
                         </div>
                     </div>
+                   
                 </div>
                 <div class="col-md-4">
                     <div class="card mini-stats-wid">
@@ -151,7 +152,7 @@
                    
          
     
-    <div class="row">
+      <div class="row">
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
@@ -172,8 +173,7 @@
         </div>
     </div>
     <!-- end row -->
-
-    <div id="right" class="d-none">
+<!--   <div id="right" class="d-none">
         <div id="menu">
             <div class="dropdown">
                 <button id="dropdownMenu-calendarType" class="btn btn-primary btn-sm dropdown-toggle" type="button"
@@ -187,6 +187,7 @@
                         <a class="dropdown-menu-title" role="menuitem" data-action="toggle-daily">
                             <i class="calendar-icon ic_view_day"></i>Daily
                         </a>
+                        
                     </li>
                     <li role="presentation">
                         <a class="dropdown-menu-title" role="menuitem" data-action="toggle-weekly">
@@ -241,7 +242,7 @@
             </span>
             <span id="renderRange" class="render-range"></span>
         </div>
-    </div>
+    </div>-->
 
 @endsection
 @section('script')

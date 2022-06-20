@@ -198,7 +198,7 @@
                                             <select id="formrow-inputState" class="form-select" name="nomsyndicat">
                                                 <option selected>Choose...</option>
                                                 @foreach ($syndicat as $item)
-                                                <option selected value="{{$item->id}}">{{$item->name}}</option>
+                                                <option selected value="{{$item->name}}">{{$item->name}}</option>
                                                 @endforeach
                                                 <option>...</option>
                                             </select>

@@ -18,7 +18,7 @@
     Use App\Http\Controllers\HomeController;
     use App\Models\Syndicat;
     $syndicat= Syndicat::all();
-   
+    $is = DB::select('select * from immeuble') ;
      $im = DB::select('select * from proprietaire') ;
   
  
@@ -81,13 +81,19 @@
                             <label for="formrow-inputState" class="form-label">Nom Immeuble</label>
                             <select id="formrow-inputState" class="form-select" name="nomimmeuble">
                                 <option selected>Choose...</option>
+                                @foreach ($is as $item)
+                                <option selected value="{{$item->name}}">{{$item->name}}</option>
+                                @endforeach
                                 <option>...</option>
                             </select>
                         <div class="mb-3">
                                     <label for="formrow-inputState" class="form-label">Numéro Appartement</label>
                                     <select id="formrow-inputState" class="form-select" name="numappartement">
                                         <option selected>Choose...</option>
+                                      
+                                        <option>...</option>
                                         <option>1</option>
+                                        
                                     </select>
                                 </div>
 
