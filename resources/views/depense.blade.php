@@ -15,13 +15,7 @@
     @endcomponent
 
     <?php
-    Use App\Http\Controllers\HomeController;
-    use App\Models\Syndicat;
-    $syndicat= Syndicat::all();
-
     $im = DB::select('select * from depense') ;
-
-
     ?>
     <div class="card">
                 <div class="card-body">

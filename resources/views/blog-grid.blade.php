@@ -8,6 +8,10 @@
         @slot('li_1') Blog @endslot
         @slot('title') Blog Grid @endslot
     @endcomponent
+    <?php
+    $im = DB::select('select * from annonce') ;
+    ?>
+
 
     <div class="row">
         <div class="col-xl-9 col-lg-8">
@@ -64,18 +68,18 @@
                                         <!-- end row -->
 
                                         <hr class="mb-4">
-
+                                        @foreach($im as $item)
                                         <div class="row">
                                             <div class="col-sm-6">
                                                 <div class="card p-1 border shadow-none">
+
                                                     <div class="p-3">
-                                                        <h5><a href="blog-details" class="text-dark">Beautiful Day with
-                                                                Friends</a></h5>
-                                                        <p class="text-muted mb-0">10 Apr, 2020</p>
+                                                        <h5><a href="blog-details" class="text-dark">{{$item->titre}}</a></h5>
+                                                        <p class="text-muted mb-0">{{$item->date}}</p>
                                                     </div>
 
                                                     <div class="position-relative">
-                                                        <img src="{{ URL::asset('/assets/images/small/img-2.jpg') }}" alt=""
+                                                        <img src="{{ URL::asset($item->image) }}" alt=""
                                                             class="img-thumbnail">
                                                     </div>
 
@@ -85,161 +89,153 @@
                                                                 <a href="#" class="text-muted">
                                                                     <i
                                                                         class="bx bx-purchase-tag-alt align-middle text-muted me-1"></i>
-                                                                    Project
+                                                                    {{$item->tag}}
                                                                 </a>
                                                             </li>
                                                             <li class="list-inline-item me-3">
-                                                                <a href="#" class="text-muted">
-                                                                    <i
-                                                                        class="bx bx-comment-dots align-middle text-muted me-1"></i>
-                                                                    12 Comments
-                                                                </a>
+
                                                             </li>
                                                         </ul>
-                                                        <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet
+                                                        <p>{{$item->text}}
                                                         </p>
 
-                                                        <div>
-                                                            <a href="#" class="text-primary">Read more <i
-                                                                    class="mdi mdi-arrow-right"></i></a>
-                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
+                                            @endforeach
+{{--                                            <div class="col-sm-6">--}}
+{{--                                                <div class="card p-1 border shadow-none">--}}
+{{--                                                    <div class="p-3">--}}
+{{--                                                        <h5><a href="blog-details" class="text-dark">Drawing a--}}
+{{--                                                                sketch</a></h5>--}}
+{{--                                                        <p class="text-muted mb-0">24 Mar, 2020</p>--}}
+{{--                                                    </div>--}}
 
-                                            <div class="col-sm-6">
-                                                <div class="card p-1 border shadow-none">
-                                                    <div class="p-3">
-                                                        <h5><a href="blog-details" class="text-dark">Drawing a
-                                                                sketch</a></h5>
-                                                        <p class="text-muted mb-0">24 Mar, 2020</p>
-                                                    </div>
+{{--                                                    <div class="position-relative">--}}
+{{--                                                        <img src="{{ URL::asset('/assets/images/small/img-6.jpg') }}" alt=""--}}
+{{--                                                            class="img-thumbnail">--}}
 
-                                                    <div class="position-relative">
-                                                        <img src="{{ URL::asset('/assets/images/small/img-6.jpg') }}" alt=""
-                                                            class="img-thumbnail">
+{{--                                                        <div class="blog-play-icon">--}}
+{{--                                                            <a href="javascript: void(0);"--}}
+{{--                                                                class="avatar-sm d-block mx-auto">--}}
+{{--                                                                <span class="avatar-title rounded-circle font-size-18"><i--}}
+{{--                                                                        class="mdi mdi-play"></i></span>--}}
+{{--                                                            </a>--}}
+{{--                                                        </div>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="p-3">--}}
+{{--                                                        <ul class="list-inline">--}}
+{{--                                                            <li class="list-inline-item me-3">--}}
+{{--                                                                <a href="#" class="text-muted">--}}
+{{--                                                                    <i--}}
+{{--                                                                        class="bx bx-purchase-tag-alt align-middle text-muted me-1"></i>--}}
+{{--                                                                    Development--}}
+{{--                                                                </a>--}}
+{{--                                                            </li>--}}
+{{--                                                            <li class="list-inline-item me-3">--}}
+{{--                                                                <a href="#" class="text-muted">--}}
+{{--                                                                    <i--}}
+{{--                                                                        class="bx bx-comment-dots align-middle text-muted me-1"></i>--}}
+{{--                                                                    08 Comments--}}
+{{--                                                                </a>--}}
+{{--                                                            </li>--}}
+{{--                                                        </ul>--}}
 
-                                                        <div class="blog-play-icon">
-                                                            <a href="javascript: void(0);"
-                                                                class="avatar-sm d-block mx-auto">
-                                                                <span class="avatar-title rounded-circle font-size-18"><i
-                                                                        class="mdi mdi-play"></i></span>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                    <div class="p-3">
-                                                        <ul class="list-inline">
-                                                            <li class="list-inline-item me-3">
-                                                                <a href="#" class="text-muted">
-                                                                    <i
-                                                                        class="bx bx-purchase-tag-alt align-middle text-muted me-1"></i>
-                                                                    Development
-                                                                </a>
-                                                            </li>
-                                                            <li class="list-inline-item me-3">
-                                                                <a href="#" class="text-muted">
-                                                                    <i
-                                                                        class="bx bx-comment-dots align-middle text-muted me-1"></i>
-                                                                    08 Comments
-                                                                </a>
-                                                            </li>
-                                                        </ul>
+{{--                                                        <p>At vero eos et accusamus et iusto odio dignissimos ducimus quos--}}
+{{--                                                        </p>--}}
 
-                                                        <p>At vero eos et accusamus et iusto odio dignissimos ducimus quos
-                                                        </p>
-
-                                                        <div>
-                                                            <a href="#" class="text-primary">Read more <i
-                                                                    class="mdi mdi-arrow-right"></i></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
+{{--                                                        <div>--}}
+{{--                                                            <a href="#" class="text-primary">Read more <i--}}
+{{--                                                                    class="mdi mdi-arrow-right"></i></a>--}}
+{{--                                                        </div>--}}
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
                                             </div>
                                         </div>
 
-                                        <div class="row">
-                                            <div class="col-sm-6">
-                                                <div class="card p-1 border shadow-none">
-                                                    <div class="p-3">
-                                                        <h5><a href="blog-details" class="text-dark">Riding bike on
-                                                                road</a></h5>
-                                                        <p class="text-muted mb-0">10 Apr, 2020</p>
-                                                    </div>
+{{--                                        <div class="row">--}}
+{{--                                            <div class="col-sm-6">--}}
+{{--                                                <div class="card p-1 border shadow-none">--}}
+{{--                                                    <div class="p-3">--}}
+{{--                                                        <h5><a href="blog-details" class="text-dark">Riding bike on--}}
+{{--                                                                road</a></h5>--}}
+{{--                                                        <p class="text-muted mb-0">10 Apr, 2020</p>--}}
+{{--                                                    </div>--}}
 
-                                                    <div class="position-relative">
-                                                        <img src="{{ URL::asset('/assets/images/small/img-1.jpg') }}" alt=""
-                                                            class="img-thumbnail">
-                                                    </div>
+{{--                                                    <div class="position-relative">--}}
+{{--                                                        <img src="{{ URL::asset('/assets/images/small/img-1.jpg') }}" alt=""--}}
+{{--                                                            class="img-thumbnail">--}}
+{{--                                                    </div>--}}
 
-                                                    <div class="p-3">
-                                                        <ul class="list-inline">
-                                                            <li class="list-inline-item me-3">
-                                                                <a href="#" class="text-muted">
-                                                                    <i
-                                                                        class="bx bx-purchase-tag-alt align-middle text-muted me-1"></i>
-                                                                    Travel
-                                                                </a>
-                                                            </li>
-                                                            <li class="list-inline-item me-3">
-                                                                <a href="#" class="text-muted">
-                                                                    <i
-                                                                        class="bx bx-comment-dots align-middle text-muted me-1"></i>
-                                                                    08 Comments
-                                                                </a>
-                                                            </li>
-                                                        </ul>
-                                                        <p>Itaque earum rerum hic tenetur a sapiente delectus ut aut</p>
+{{--                                                    <div class="p-3">--}}
+{{--                                                        <ul class="list-inline">--}}
+{{--                                                            <li class="list-inline-item me-3">--}}
+{{--                                                                <a href="#" class="text-muted">--}}
+{{--                                                                    <i--}}
+{{--                                                                        class="bx bx-purchase-tag-alt align-middle text-muted me-1"></i>--}}
+{{--                                                                    Travel--}}
+{{--                                                                </a>--}}
+{{--                                                            </li>--}}
+{{--                                                            <li class="list-inline-item me-3">--}}
+{{--                                                                <a href="#" class="text-muted">--}}
+{{--                                                                    <i--}}
+{{--                                                                        class="bx bx-comment-dots align-middle text-muted me-1"></i>--}}
+{{--                                                                    08 Comments--}}
+{{--                                                                </a>--}}
+{{--                                                            </li>--}}
+{{--                                                        </ul>--}}
+{{--                                                        <p>Itaque earum rerum hic tenetur a sapiente delectus ut aut</p>--}}
 
-                                                        <div>
-                                                            <a href="#" class="text-primary">Read more <i
-                                                                    class="mdi mdi-arrow-right"></i></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+{{--                                                        <div>--}}
+{{--                                                            <a href="#" class="text-primary">Read more <i--}}
+{{--                                                                    class="mdi mdi-arrow-right"></i></a>--}}
+{{--                                                        </div>--}}
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
 
-                                            <div class="col-sm-6">
-                                                <div class="card p-1 border shadow-none">
-                                                    <div class="p-3">
-                                                        <h5><a href="blog-details" class="text-dark">Project discussion
-                                                                with team</a></h5>
-                                                        <p class="text-muted mb-0">24 Mar, 2020</p>
-                                                    </div>
+{{--                                            <div class="col-sm-6">--}}
+{{--                                                <div class="card p-1 border shadow-none">--}}
+{{--                                                    <div class="p-3">--}}
+{{--                                                        <h5><a href="blog-details" class="text-dark">Project discussion--}}
+{{--                                                                with team</a></h5>--}}
+{{--                                                        <p class="text-muted mb-0">24 Mar, 2020</p>--}}
+{{--                                                    </div>--}}
 
-                                                    <div class="position-relative">
-                                                        <img src="{{ URL::asset('/assets/images/small/img-2.jpg') }}" alt=""
-                                                            class="img-thumbnail">
+{{--                                                    <div class="position-relative">--}}
+{{--                                                        <img src="{{ URL::asset('/assets/images/small/img-2.jpg') }}" alt=""--}}
+{{--                                                            class="img-thumbnail">--}}
 
-                                                    </div>
+{{--                                                    </div>--}}
 
-                                                    <div class="p-3">
-                                                        <ul class="list-inline">
-                                                            <li class="list-inline-item me-3">
-                                                                <a href="#" class="text-muted">
-                                                                    <i
-                                                                        class="bx bx-purchase-tag-alt align-middle text-muted me-1"></i>
-                                                                    Development
-                                                                </a>
-                                                            </li>
-                                                            <li class="list-inline-item me-3">
-                                                                <a href="#" class="text-muted">
-                                                                    <i
-                                                                        class="bx bx-comment-dots align-middle text-muted me-1"></i>
-                                                                    08 Comments
-                                                                </a>
-                                                            </li>
-                                                        </ul>
+{{--                                                    <div class="p-3">--}}
+{{--                                                        <ul class="list-inline">--}}
+{{--                                                            <li class="list-inline-item me-3">--}}
+{{--                                                                <a href="#" class="text-muted">--}}
+{{--                                                                    <i--}}
+{{--                                                                        class="bx bx-purchase-tag-alt align-middle text-muted me-1"></i>--}}
+{{--                                                                    Development--}}
+{{--                                                                </a>--}}
+{{--                                                            </li>--}}
+{{--                                                            <li class="list-inline-item me-3">--}}
+{{--                                                                <a href="#" class="text-muted">--}}
+{{--                                                                    <i--}}
+{{--                                                                        class="bx bx-comment-dots align-middle text-muted me-1"></i>--}}
+{{--                                                                    08 Comments--}}
+{{--                                                                </a>--}}
+{{--                                                            </li>--}}
+{{--                                                        </ul>--}}
 
-                                                        <p>Sed ut perspiciatis unde omnis iste eaque natus error sit</p>
+{{--                                                        <p>Sed ut perspiciatis unde omnis iste eaque natus error sit</p>--}}
 
-                                                        <div>
-                                                            <a href="#" class="text-primary">Read more <i
-                                                                    class="mdi mdi-arrow-right"></i></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+{{--                                                        <div>--}}
+{{--                                                            <a href="#" class="text-primary">Read more <i--}}
+{{--                                                                    class="mdi mdi-arrow-right"></i></a>--}}
+{{--                                                        </div>--}}
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
 
 
                                         <hr class="my-4">

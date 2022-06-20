@@ -29,5 +29,7 @@ Route::get('index/{locale}', [App\Http\Controllers\HomeController::class, 'lang'
 Route::post('insert-syndicat',[App\Http\Controllers\SyndicatController::class,'insert']);
 Route::post('insert-immeuble',[App\Http\Controllers\ProprieteController::class,'insertImmeuble']);
 Route::post('insert-proprietaire',[App\Http\Controllers\PropietaireController::class,'insert']);
+Route::post('insert-depense',[App\Http\Controllers\DepenseController::class,'insert']);
+Route::post('insert-annonce',[App\Http\Controllers\AnnonceController::class,'insert']);
 Route::post('insert-document',[App\Http\Controllers\DocumentController::class,'insert']);
 
